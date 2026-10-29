@@ -2,6 +2,10 @@ package com.agenda.UI;
 
 import javax.swing.JOptionPane;
 
+import com.agenda.UI.PlayerUI.PlayerDeletionDialog;
+import com.agenda.UI.PlayerUI.PlayerRegistrationDialog;
+import com.agenda.UI.PlayerUI.PlayerSearchDialog;
+
 public class PlayerMenu {
     public void showMenuPlayer() {
         boolean exit = true;
@@ -13,13 +17,26 @@ public class PlayerMenu {
         """;
         while (exit) {
             try {
-                int entrada = Integer.parseInt(JOptionPane.showInputDialog(
+                String input = JOptionPane.showInputDialog(
                     null,
                     option,
                     "Menu Players",
                     JOptionPane.QUESTION_MESSAGE
-                ).trim());
+                );
+                if (input == null) {
+                    return;
+                }
+                int entrada = Integer.parseInt(input.trim());
                 switch (entrada) {
+                    case 1:
+                        new PlayerRegistrationDialog(null).setVisible(true);
+                        break;
+                    case 2:
+                        new PlayerDeletionDialog(null).setVisible(true);
+                        break;
+                    case 3:
+                        new PlayerSearchDialog(null).setVisible(true);
+                        break;
                     case 0:
                         exit = false;
                         break;
